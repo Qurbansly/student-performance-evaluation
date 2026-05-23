@@ -1,63 +1,126 @@
-Student Performance Evaluation
+# Student Performance Evaluation
 
-PISA 2022 Multi-Output Student Performance Prediction System using Machine Learning and Regression Analysis.
+PISA 2022 Multi-Output Student Performance Prediction System using Machine Learning, Regression Analysis, Cross-Validation, and Hyperparameter Optimization.
 
-This project predicts student mathematics performance using the OECD PISA 2022 dataset and compares multiple regression models using cross-validation and hyperparameter tuning techniques.
+---
 
-Project Overview
+# Table of Contents
 
-The system analyzes how socio-economic, demographic, psychological, and educational factors influence student mathematics achievement.
+- Project Overview
+- Objectives
+- Technologies Used
+- Dataset Information
+- Feature Engineering
+- Machine Learning Architecture
+- Regression Models
+- Cross Validation
+- Hyperparameter Tuning
+- Feature Importance Analysis
+- Model Evaluation Metrics
+- Final Experimental Results
+- Visualization and Generated Graphs
+- FastAPI Prediction Service
+- Example API Requests
+- Risk Classification
+- Project Structure
+- Installation
+- Training Pipeline
+- Research Findings
+- Future Improvements
+- Author
 
-The project includes:
+---
 
-Multi-output mathematics prediction system
-Regression model comparison
-Cross-validation analysis
-Hyperparameter tuning
-Feature importance analysis
-REST API using FastAPI
-Visualization and evaluation graphs
+# Project Overview
 
-The project predicts student mathematics performance using both:
+This project predicts student mathematics performance using the OECD PISA 2022 dataset.
 
-Advanced machine learning models
-Classical regression approaches
-Technologies Used
-Python 3
-Pandas
-NumPy
-Scikit-learn
-XGBoost
-FastAPI
-Uvicorn
-Joblib
-Pyreadstat
-Matplotlib
-Dataset
+The system analyzes how educational, psychological, social, and economic factors influence mathematics achievement among students.
 
-Dataset source:
+The project combines:
 
-OECD PISA 2022 Database
-PISA 2022 Student Questionnaire Dataset
+- Educational Data Mining
+- Machine Learning
+- Regression Analysis
+- Ensemble Learning
+- Hyperparameter Optimization
+- API-based Intelligent Prediction Systems
 
-Dataset file:
+The project was developed as an intelligent educational performance prediction and comparative regression analysis system.
 
+---
+
+# Objectives
+
+The main objectives of this project are:
+
+- Predict student mathematics performance
+- Analyze educational and socio-economic factors
+- Compare regression algorithms
+- Evaluate machine learning performance
+- Perform cross-validation
+- Apply hyperparameter tuning
+- Build an intelligent prediction API
+- Analyze important educational variables
+
+---
+
+# Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python 3 | Main programming language |
+| Pandas | Data analysis and preprocessing |
+| NumPy | Numerical computations |
+| Scikit-learn | Machine learning framework |
+| XGBoost | Gradient boosting regression |
+| FastAPI | REST API framework |
+| Uvicorn | FastAPI server |
+| Joblib | Model serialization |
+| Pyreadstat | Reading SPSS `.sav` files |
+| Matplotlib | Graph generation and visualization |
+
+---
+
+# Dataset Information
+
+## Dataset Source
+
+The project uses the:
+
+- OECD PISA 2022 Dataset
+- PISA 2022 Student Questionnaire Dataset
+
+## Dataset File
+
+```text
 CY08MSP_STU_QQQ.sav
+```
 
-The project uses student-related variables such as:
+## Dataset Description
 
-Economic and social status
-Home possessions
-ICT resources
-Mathematics anxiety
-Family support
-Teacher support
-Bullying experience
-School belonging
-Mathematics motivation
-Learning preferences
-Machine Learning Architecture
-Numerical Features
+PISA (Programme for International Student Assessment) evaluates the educational performance of students worldwide.
+
+The dataset contains:
+
+- Student socio-economic information
+- Family support indicators
+- Educational background
+- ICT access
+- Mathematics motivation
+- Learning attitudes
+- School belonging
+- Bullying experiences
+- Teacher support
+- Mathematics anxiety
+
+---
+
+# Feature Engineering
+
+## Numerical Features
+
+```text
 ESCS
 HOMEPOS
 ICTRES
@@ -69,7 +132,29 @@ TEACHSUP
 MATHEFF
 FAMCON
 ANXMAT
-Categorical Features
+```
+
+### Feature Descriptions
+
+| Feature | Description |
+|---|---|
+| ESCS | Economic, social and cultural status |
+| HOMEPOS | Home possessions index |
+| ICTRES | ICT resources |
+| ICTHOME | ICT access at home |
+| BELONG | Sense of school belonging |
+| BULLIED | Bullying exposure |
+| FAMSUP | Family support |
+| TEACHSUP | Teacher support |
+| MATHEFF | Mathematics self-efficacy |
+| FAMCON | Family connectedness |
+| ANXMAT | Mathematics anxiety |
+
+---
+
+## Categorical Features
+
+```text
 ST004D01T
 ST005Q01JA
 ST006Q01JA
@@ -82,117 +167,287 @@ MATHPREF
 MATHEASE
 MATHMOT
 MATHPERS
-Target Variables
-Multi-Output Prediction Targets
+```
+
+These features include:
+
+- Gender
+- Educational level
+- Work conditions
+- Mathematics attitudes
+- Learning preferences
+- Motivation indicators
+
+---
+
+# Target Variables
+
+## Multi-Output Prediction Targets
+
+The main intelligent prediction system predicts:
+
+```text
 PV1MATH
 PV2MATH
 PV3MATH
 PV4MATH
 PV5MATH
-Regression Comparison Target
+```
+
+These represent plausible mathematics values from the PISA dataset.
+
+---
+
+## Regression Comparison Target
+
+A new regression target was created:
+
+```text
 AVG_MATH
+```
 
-Average mathematics score:
+Formula:
 
-AVG_MATH=
-5
-PV1MATH+PV2MATH+PV3MATH+PV4MATH+PV5MATH
-	​
+```text
+AVG_MATH = (PV1MATH + PV2MATH + PV3MATH + PV4MATH + PV5MATH) / 5
+```
 
+This target was used for regression comparison experiments.
 
-AVG_MATH=
-5
-PV1MATH+PV2MATH+PV3MATH+PV4MATH+PV5MATH
-	​
+---
 
+# Machine Learning Architecture
 
-Implemented Models
-Main Prediction System
-MultiOutputRegressor
-XGBoost Regressor
-Regression Comparison Models
-Linear Regression
-Random Forest Regressor
-Gradient Boosting Regressor
-XGBoost Regressor
-Tuned Models
-Tuned Random Forest
-Tuned XGBoost
-Cross Validation
+## Main Prediction System
+
+The main prediction system uses:
+
+- MultiOutputRegressor
+- XGBoost Regressor
+- FastAPI deployment architecture
+
+The system predicts all five mathematics plausible values simultaneously.
+
+---
+
+# Regression Models
+
+The project compares multiple regression approaches.
+
+## Implemented Models
+
+### 1. Linear Regression
+
+Classical statistical regression baseline model.
+
+Characteristics:
+
+- Simple linear relationships
+- High interpretability
+- Baseline comparison model
+
+---
+
+### 2. Random Forest Regressor
+
+Ensemble learning model using multiple decision trees.
+
+Characteristics:
+
+- Nonlinear learning capability
+- Strong generalization
+- Reduced overfitting
+
+---
+
+### 3. Gradient Boosting Regressor
+
+Boosting-based ensemble regression model.
+
+Characteristics:
+
+- Sequential error correction
+- Improved prediction accuracy
+- Better nonlinear learning
+
+---
+
+### 4. XGBoost Regressor
+
+Advanced optimized gradient boosting framework.
+
+Characteristics:
+
+- High performance
+- Regularization support
+- Parallel processing
+- Superior generalization
+
+---
+
+# Cross Validation
 
 The project uses:
 
+```text
 5-Fold Cross Validation
+```
 
-Cross-validation was applied to evaluate model generalization performance and stability.
+Cross-validation was applied to:
 
-Hyperparameter Tuning
+- Evaluate model stability
+- Measure generalization capability
+- Reduce overfitting risk
+- Validate experimental consistency
+
+---
+
+# Hyperparameter Tuning
 
 Hyperparameter optimization was performed using:
 
+```text
 RandomizedSearchCV
+```
 
-Optimized parameters include:
+## Tuned Models
 
-Number of estimators
-Maximum tree depth
-Learning rate
-Subsample ratio
-Minimum sample split
-Minimum sample leaf
-Final Model Performance
-Model	R²	MAE	RMSE
-Linear Regression	0.3804	61.30	77.66
-Random Forest	0.5384	53.06	67.03
-Gradient Boosting	0.5618	51.67	65.31
-XGBoost	0.5754	50.83	64.29
-Random Forest Tuned	0.5479	52.53	66.34
-XGBoost Tuned	0.5837	50.29	63.65
+- Random Forest Regressor
+- XGBoost Regressor
 
-Best performing model:
+## Optimized Parameters
 
-Tuned XGBoost Regressor
-Feature Importance Analysis
+### Random Forest Parameters
 
-Top influential features include:
+- Number of estimators
+- Maximum depth
+- Minimum samples split
+- Minimum samples leaf
 
-Mathematics self-efficacy (MATHEFF)
-Home possessions (HOMEPOS)
-Economic and social status (ESCS)
-Family connectedness (FAMCON)
-Mathematics anxiety (ANXMAT)
+### XGBoost Parameters
+
+- Number of estimators
+- Maximum depth
+- Learning rate
+- Subsample ratio
+- Column sample ratio
+
+---
+
+# Feature Importance Analysis
 
 Feature importance analysis was performed using the tuned XGBoost model.
 
-FastAPI Prediction Service
+## Most Important Features
 
-The project includes a FastAPI-based prediction API for real-time student performance prediction.
+| Feature | Importance |
+|---|---|
+| MATHEFF | Mathematics self-efficacy |
+| HOMEPOS | Home possessions |
+| ESCS | Economic and social status |
+| FAMCON | Family connectedness |
+| ANXMAT | Mathematics anxiety |
 
-Run API
+The analysis demonstrates that psychological and socio-economic variables strongly influence mathematics achievement.
+
+---
+
+# Model Evaluation Metrics
+
+The following metrics were used:
+
+## R² Score
+
+Measures prediction quality and explained variance.
+
+## MAE (Mean Absolute Error)
+
+Measures average absolute prediction error.
+
+## RMSE (Root Mean Squared Error)
+
+Measures prediction deviation magnitude.
+
+---
+
+# Final Experimental Results
+
+| Model | R² | MAE | RMSE |
+|---|---|---|---|
+| Linear Regression | 0.3804 | 61.30 | 77.66 |
+| Random Forest | 0.5384 | 53.06 | 67.03 |
+| Gradient Boosting | 0.5618 | 51.67 | 65.31 |
+| XGBoost | 0.5754 | 50.83 | 64.29 |
+| Random Forest Tuned | 0.5479 | 52.53 | 66.34 |
+| XGBoost Tuned | 0.5837 | 50.29 | 63.65 |
+
+## Best Performing Model
+
+```text
+Tuned XGBoost Regressor
+```
+
+The tuned XGBoost model achieved the highest prediction accuracy and best generalization performance.
+
+---
+
+# Visualization and Generated Graphs
+
+The project automatically generates:
+
+| File | Description |
+|---|---|
+| final_model_comparison.csv | Final model comparison |
+| feature_importance.csv | Feature importance values |
+| model_r2_comparison.png | R² comparison graph |
+| model_rmse_comparison.png | RMSE comparison graph |
+| feature_importance.png | Feature importance visualization |
+| hyperparameter_tuning_results.csv | Tuning results |
+
+## Generated Graphs
+
+### 1. Model R² Comparison
+
+Compares prediction quality between regression models.
+
+### 2. Model RMSE Comparison
+
+Compares prediction errors.
+
+### 3. Feature Importance Graph
+
+Visualizes most influential educational factors.
+
+---
+
+# FastAPI Prediction Service
+
+The project includes a FastAPI-based prediction API.
+
+## Run API
+
+```bash
 uvicorn app:app --reload
-Swagger Documentation
+```
+
+## Swagger Documentation
+
+```text
 http://127.0.0.1:8000/docs
-Example Request
+```
+
+---
+
+# Example API Request
+
+```json
 {
   "ESCS": 0.3,
   "HOMEPOS": 0.5,
   "ICTRES": 0.2,
   "ICTHOME": 0.4,
-
   "ST004D01T": "Female",
-  "ST005Q01JA": "<ISCED level 3.4>",
-  "ST006Q01JA": "Yes",
-  "ST006Q02JA": "No",
-  "ST006Q03JA": "Yes",
-  "ST007Q01JA": "Yes",
-
   "WORKPAY": "No work for pay",
-  "WORKHOME": "Sometimes",
-  "MATHPREF": "No preference for mathematics over other subjects",
-  "MATHEASE": "Agree",
-  "MATHMOT": "Agree",
-  "MATHPERS": "Agree",
-
   "BELONG": 0.5,
   "BULLIED": -0.3,
   "FAMSUP": 0.7,
@@ -201,7 +456,13 @@ Example Request
   "FAMCON": 0.5,
   "ANXMAT": -0.2
 }
-Example Response
+```
+
+---
+
+# Example API Response
+
+```json
 {
   "PV1MATH": 470.12,
   "PV2MATH": 465.88,
@@ -211,12 +472,23 @@ Example Response
   "average_score": 469.65,
   "risk_level": "MEDIUM_RISK"
 }
-Risk Classification
-Average Score	Risk Level
-< 400	HIGH_RISK
-400 - 499	MEDIUM_RISK
->= 500	LOW_RISK
-Project Structure
+```
+
+---
+
+# Risk Classification
+
+| Average Score | Risk Level |
+|---|---|
+| < 400 | HIGH_RISK |
+| 400 - 499 | MEDIUM_RISK |
+| >= 500 | LOW_RISK |
+
+---
+
+# Project Structure
+
+```text
 .
 ├── app.py
 ├── train_multi_output.py
@@ -247,33 +519,91 @@ Project Structure
 │
 └── data/
     └── CY08MSP_STU_QQQ.sav
-Installation
-Create Virtual Environment
+```
+
+---
+
+# Installation
+
+## Create Virtual Environment
+
+```bash
 python3 -m venv venv
-Activate Environment
+```
+
+## Activate Environment
+
+```bash
 source venv/bin/activate
-Install Dependencies
+```
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
-Training Models
-Train Multi-Output Prediction System
+```
+
+---
+
+# Training Pipeline
+
+## Train Multi-Output Prediction Model
+
+```bash
 python train_multi_output.py
-Train Regression Comparison Models
+```
+
+## Train Regression Comparison Models
+
+```bash
 python train_regression_comparison.py
-Perform Hyperparameter Tuning
+```
+
+## Perform Hyperparameter Tuning
+
+```bash
 python hyperparameter_tuning.py
-Generate Feature Importance
+```
+
+## Generate Feature Importance Analysis
+
+```bash
 python feature_importance_analysis.py
-Generate Graphs
+```
+
+## Generate Visualization Graphs
+
+```bash
 python generate_graphs.py
-Research Contribution
+```
 
-This project demonstrates that ensemble boosting regression models significantly outperform classical linear regression approaches in predicting student mathematics achievement using PISA 2022 educational data.
+---
 
-The results show that:
+# Research Findings
 
-nonlinear models better capture educational relationships
-socio-economic and psychological variables strongly influence achievement
-hyperparameter tuning improves model generalization performance
-Author
+The project demonstrates that:
 
-Developed by Gurban Suleymanov as a machine learning and educational performance prediction research project using the OECD PISA 2022 dataset.
+- Ensemble boosting models outperform classical linear regression
+- Educational performance contains nonlinear relationships
+- Psychological and socio-economic factors strongly affect achievement
+- Hyperparameter tuning improves generalization performance
+- XGBoost achieved the best predictive capability
+
+---
+
+# Future Improvements
+
+Possible future improvements include:
+
+- Deep learning architectures
+- Explainable AI methods
+- Student clustering analysis
+- Country-specific educational analysis
+- Real-time educational dashboards
+- SHAP-based interpretability
+
+---
+
+# Author
+
+Developed by Gurban Suleymanov as a machine learning and educational data mining research project using the OECD PISA 2022 dataset.
