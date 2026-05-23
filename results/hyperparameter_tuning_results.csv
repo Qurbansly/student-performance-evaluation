@@ -1,0 +1,3 @@
+model,best_cv_r2,test_r2,test_mae,test_rmse,best_params
+Random Forest Tuned,0.5523,0.5479,52.531,66.3382,"{'model__n_estimators': 50, 'model__min_samples_split': 5, 'model__min_samples_leaf': 1, 'model__max_depth': 12}"
+XGBoost Tuned,0.5888,0.5837,50.29,63.6515,"{'model__subsample': 1.0, 'model__n_estimators': 200, 'model__max_depth': 4, 'model__learning_rate': 0.1, 'model__colsample_bytree': 1.0}"

@@ -1,0 +1,7 @@
+model,r2,mae,rmse,best_cv_r2,best_params
+Linear Regression,0.3804,61.2956,77.6604,0.3869,Default parameters
+Random Forest,0.5384,53.064,67.0287,0.5453,Default parameters
+Gradient Boosting,0.5618,51.6664,65.3102,0.5725,Default parameters
+XGBoost,0.5754,50.8299,64.2874,0.5829,Default parameters
+Random Forest Tuned,0.5479,52.531,66.3382,0.5523,"{'model__n_estimators': 50, 'model__min_samples_split': 5, 'model__min_samples_leaf': 1, 'model__max_depth': 12}"
+XGBoost Tuned,0.5837,50.29,63.6515,0.5888,"{'model__subsample': 1.0, 'model__n_estimators': 200, 'model__max_depth': 4, 'model__learning_rate': 0.1, 'model__colsample_bytree': 1.0}"
